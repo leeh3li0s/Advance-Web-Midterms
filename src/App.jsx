@@ -1,121 +1,108 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
 import './App.css'
 
+const guitars = [
+  {
+    model: 'Fender Stratocaster',
+    bodyType: 'Electric',
+    brand: 'Fender',
+    stock: 24,
+    image: '/Fender Stratocaster.jpg',
+  },
+  {
+    model: 'Gibson Les Paul Standard',
+    bodyType: 'Electric',
+    brand: 'Gibson',
+    stock: 18,
+    image: '/Gibson Les Paul Standard.jpg',
+  },
+  {
+    model: 'Fender Telecaster',
+    bodyType: 'Electric',
+    brand: 'Fender',
+    stock: 21,
+    image: '/Fender Telecaster.jpg',
+  },
+  {
+    model: 'Martin D-28',
+    bodyType: 'Acoustic',
+    brand: 'Martin',
+    stock: 12,
+    image: '/Martin D-28.jpg',
+  },
+  {
+    model: 'Taylor 814ce',
+    bodyType: 'Acoustic',
+    brand: 'Taylor',
+    stock: 15,
+    image: '/Taylor 814ce.jpg',
+  },
+  {
+    model: 'Yamaha C40',
+    bodyType: 'Classical',
+    brand: 'Yamaha',
+    stock: 30,
+    image: '/Yamaha C40.jpg',
+  },
+  {
+    model: 'Fender Precision Bass',
+    bodyType: 'Bass',
+    brand: 'Fender',
+    stock: 16,
+    image: '/Fender Precision Bass.jpg',
+  },
+  {
+    model: 'Gibson SG Standard',
+    bodyType: 'Electric',
+    brand: 'Gibson',
+    stock: 14,
+    image: '/Gibson SG Standard.jpg',
+  },
+]
+
 function App() {
-  const [count, setCount] = useState(0)
+  const totalStock = guitars.reduce((total, guitar) => total + guitar.stock, 0)
+  const bodyTypeCount = new Set(guitars.map((guitar) => guitar.bodyType)).size
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
+    <main className="app">
+      <section className="hero-section">
         <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
+          <p className="eyebrow">ANA MARIE LIM MIDTERM EXAM</p>
+          <h1>Guitar Store Inventory Manager</h1>
         </div>
       </section>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+      <section className="section-block" aria-labelledby="inventory-title">
+        <div className="section-heading">
+          <div>
+            <h2 id="inventory-title">Guitar Inventory</h2>
+            <p>Well-known guitar models ready for the next feature commits.</p>
+          </div>
+        </div>
+
+        <div className="inventory-grid">
+          {guitars.map((guitar) => (
+            <article className="guitar-card" key={guitar.model}>
+              <img
+                className="guitar-image"
+                src={guitar.image}
+                alt={`${guitar.model} guitar`}
+              />
+              <div className="card-top">
+                <h3>{guitar.model}</h3>
+              </div>
+              <p>{guitar.brand}</p>
+              <div className="card-details">
+                <span>{guitar.bodyType}</span>
+                <span>Stock Left: {guitar.stock}/100</span>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      
+    </main>
   )
 }
 
