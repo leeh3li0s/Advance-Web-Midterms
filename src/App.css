@@ -62,6 +62,73 @@ h1 {
   font-size: 18px;
 }
 
+.role-panel {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  margin-top: 24px;
+  padding: 18px 20px;
+  background: #ffffff;
+  border: 1px solid #e5dfcf;
+  border-radius: 8px;
+  box-shadow: 0 10px 28px rgba(40, 54, 24, 0.08);
+}
+
+.role-panel span,
+.role-control > span {
+  display: block;
+  margin-bottom: 6px;
+  color: #6b705c;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.role-panel strong {
+  color: #283618;
+  font-size: 18px;
+}
+
+.role-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.role-buttons button {
+  min-height: 38px;
+  padding: 0 16px;
+  border: 1px solid #d7cdb9;
+  border-radius: 999px;
+  color: #283618;
+  background: #f7f3e8;
+  cursor: pointer;
+}
+
+.role-buttons button.active {
+  color: #ffffff;
+  background: #283618;
+  border-color: #283618;
+}
+
+.role-view {
+  margin-top: 18px;
+  padding: 20px;
+  color: #283618;
+  background: #e9edc9;
+  border: 1px solid #d8dfaf;
+  border-radius: 8px;
+}
+
+.role-view h2 {
+  margin-bottom: 8px;
+  font-size: 22px;
+}
+
+.role-view p {
+  margin-bottom: 0;
+  color: #4f5a3e;
+}
+
 .stats-grid,
 .inventory-grid,
 .requirements-grid {
@@ -214,7 +281,8 @@ h2 {
 
 @media (max-width: 900px) {
   .hero-section,
-  .section-heading {
+  .section-heading,
+  .role-panel {
     flex-direction: column;
     align-items: stretch;
   }

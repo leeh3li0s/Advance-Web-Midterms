@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import './App.css'
 
 const guitars = [
@@ -60,8 +61,14 @@ const guitars = [
 ]
 
 function App() {
+  const [userRole, setUserRole] = useState('Merchant')
   const totalStock = guitars.reduce((total, guitar) => total + guitar.stock, 0)
   const bodyTypeCount = new Set(guitars.map((guitar) => guitar.bodyType)).size
+  const lowStock = guitars.filter((guitar) => guitar.stock <= 15)
+
+  useEffect(() => {
+    document.title = `${userRole} | Guitar Store Inventory Manager`
+  }, [userRole])
 
   return (
     <main className="app">
@@ -70,6 +77,66 @@ function App() {
           <p className="eyebrow">ANA MARIE LIM MIDTERM EXAM</p>
           <h1>Guitar Store Inventory Manager</h1>
         </div>
+      </section>
+
+      <section className="role-panel" aria-label="Store settings">
+        <div>
+          <span>Manufacturer Name</span>
+          <strong>Global Guitar Supply</strong>
+        </div>
+
+        <div className="role-control">
+          <span>User Role</span>
+          <div className="role-buttons">
+            <button
+              className={userRole === 'Merchant' ? 'active' : ''}
+              type="button"
+              onClick={() => setUserRole('Merchant')}
+            >
+              Merchant
+            </button>
+            <button
+              className={userRole === 'Consumer' ? 'active' : ''}
+              type="button"
+              onClick={() => setUserRole('Consumer')}
+            >
+              Consumer
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {userRole === 'Merchant' ? (
+        <section className="role-view" aria-label="Merchant Inventory View">
+          <h2>Merchant Inventory View</h2>
+          <p>
+            Total stock is {totalStock} units. Restock watch:{' '}
+            {lowStock.map((guitar) => guitar.model).join(', ')}.
+          </p>
+        </section>
+      ) : (
+        <section className="role-view" aria-label="Consumer Shopping View">
+          <h2>Consumer Shopping View</h2>
+          <p>
+            Browse available guitars and compare body types before choosing a
+            model to ask about in-store.
+          </p>
+        </section>
+      )}
+
+      <section className="stats-grid" aria-label="Inventory overview">
+        <article className="stat-card">
+          <span>Total Models</span>
+          <strong>{guitars.length}</strong>
+        </article>
+        <article className="stat-card">
+          <span>Total Stock</span>
+          <strong>{totalStock}</strong>
+        </article>
+        <article className="stat-card">
+          <span>Body Types</span>
+          <strong>{bodyTypeCount}</strong>
+        </article>
       </section>
 
       <section className="section-block" aria-labelledby="inventory-title">
