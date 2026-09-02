@@ -31,6 +31,7 @@ test('uses hooks and conditional role views', () => {
   assert.match(appSource, /useState/)
   assert.match(appSource, /useEffect/)
   assert.match(appSource, /Merchant Inventory View/)
+  assert.match(appSource, /Browse inventory/)
   assert.match(appSource, /Consumer Shopping View/)
   assert.match(appSource, /Manufacturer Name/)
 })

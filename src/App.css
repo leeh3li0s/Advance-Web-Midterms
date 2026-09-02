@@ -84,9 +84,23 @@ h1 {
   font-weight: 700;
 }
 
+.role-control {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-bottom: 18px;
+  padding-bottom: 8px;
+}
+
 .role-panel strong {
   color: #283618;
   font-size: 18px;
+}
+
+.manufacturer-name {
+  margin-bottom: 10px;
+  color: #6b705c;
+  font-size: 14px;
 }
 
 .role-buttons {
@@ -111,11 +125,10 @@ h1 {
 }
 
 .role-view {
-  margin-top: 18px;
-  padding: 20px;
+  width: 100%;
   color: #283618;
-  background: #e9edc9;
-  border: 1px solid #d8dfaf;
+  background: #ffff;
+  border: 1px solid #ffffff;
   border-radius: 8px;
 }
 
@@ -295,5 +308,9 @@ h2 {
   .inventory-grid,
   .requirements-grid {
     grid-template-columns: 1fr;
+  }
+
+  .role-control {
+    align-items: flex-start;
   }
 }
