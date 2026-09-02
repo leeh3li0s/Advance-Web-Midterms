@@ -33,7 +33,8 @@ test('uses hooks and conditional role views', () => {
   assert.match(appSource, /useEffect/)
   assert.match(appSource, /Merchant Inventory View/)
   assert.match(appSource, /Browse inventory/)
-  assert.match(appSource, /Consumer Shopping View/)
+  assert.match(appSource, /Costumer Shopping View/)
+  assert.doesNotMatch(appSource, /Consumer/)
 })
 
 test('includes form validation for adding inventory items', () => {
@@ -44,6 +45,7 @@ test('includes form validation for adding inventory items', () => {
   assert.match(appSource, /Stock Quantity/)
   assert.match(appSource, /Manufacturer Name/)
   assert.match(appSource, /type="radio"/)
+  assert.match(appSource, /userRole === 'Merchant' &&/)
   assert.match(appSource, /Please enter a guitar model/)
   assert.match(appSource, /Guitar model must be at least 3 characters/)
   assert.match(appSource, /Please enter a manufacturer name/)
