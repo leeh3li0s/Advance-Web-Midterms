@@ -4,7 +4,15 @@ import assert from 'node:assert/strict'
 
 const appSource = readFileSync(new URL('./App.jsx', import.meta.url), 'utf8')
 const cssSource = readFileSync(new URL('./App.css', import.meta.url), 'utf8')
+const indexCssSource = readFileSync(
+  new URL('./index.css', import.meta.url),
+  'utf8',
+)
 const packageSource = readFileSync(new URL('../package.json', import.meta.url), 'utf8')
+const viteConfigSource = readFileSync(
+  new URL('../vite.config.js', import.meta.url),
+  'utf8',
+)
 
 test('shows the guitar inventory manager page content', () => {
   assert.match(appSource, /Guitar Store Inventory Manager/)
@@ -82,4 +90,14 @@ test('lays out the merchant form as a padded two-column card', () => {
   assert.match(cssSource, /\.role-radio-group/)
   assert.match(cssSource, /flex-direction: row/)
   assert.match(cssSource, /justify-content: center/)
+})
+
+test('uses Tailwind CSS as the styling framework', () => {
+  assert.match(packageSource, /tailwindcss/)
+  assert.match(packageSource, /@tailwindcss\/vite/)
+  assert.match(viteConfigSource, /@tailwindcss\/vite/)
+  assert.match(indexCssSource, /@import "tailwindcss"/)
+  assert.match(appSource, /mx-auto/)
+  assert.match(appSource, /grid/)
+  assert.match(appSource, /rounded-\[8px\]/)
 })

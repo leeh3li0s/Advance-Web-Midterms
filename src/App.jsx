@@ -271,8 +271,8 @@ function App() {
   }
 
   return (
-    <main className="app">
-      <div className="role-control">
+    <main className="app mx-auto min-h-screen">
+      <div className="role-control pb-2">
         <span>User Role</span>
         <div className="role-buttons">
           <button
@@ -291,23 +291,32 @@ function App() {
           </button>
         </div>
       </div>
-      <section className="hero-section">
+      <section className="hero-section rounded-[8px]">
         <div>
           <p className="eyebrow">ANA MARIE LIM MIDTERM EXAM</p>
           <h1>Guitar Store Inventory Manager</h1>
         </div>
       </section>
 
-      <section className="role-panel" aria-label="Store settings">
+      <section
+        className="role-panel rounded-[8px] bg-white"
+        aria-label="Store settings"
+      >
         <div>
          
           {userRole === 'Merchant' ? (
-            <section className="role-view" aria-label="Merchant Inventory View">
+            <section
+              className="role-view rounded-[8px]"
+              aria-label="Merchant Inventory View"
+            >
               <h2>Merchant Inventory View</h2>
               <p>Browse inventory and check current stock.</p>
             </section>
           ) : (
-            <section className="role-view" aria-label="Consumer Shopping View">
+            <section
+              className="role-view rounded-[8px]"
+              aria-label="Consumer Shopping View"
+            >
               <h2>Consumer Shopping View</h2>
               <p>
                 Browse available guitars and compare body types before choosing
@@ -319,7 +328,10 @@ function App() {
       </section>
 
       {userRole === 'Merchant' && (
-        <section className="form-section" aria-labelledby="form-title">
+        <section
+          className="form-section rounded-[8px] bg-white"
+          aria-labelledby="form-title"
+        >
           <div className="section-heading">
             <div>
               <h2 id="form-title">Add Guitar</h2>
@@ -327,7 +339,11 @@ function App() {
             </div>
           </div>
 
-          <form className="inventory-form" onSubmit={handleSubmit} noValidate>
+          <form
+            className="inventory-form grid"
+            onSubmit={handleSubmit}
+            noValidate
+          >
             <div className="form-field">
               <label htmlFor="model">Guitar Model</label>
               <input
@@ -422,22 +438,22 @@ function App() {
         </section>
       )}
 
-      <section className="stats-grid" aria-label="Inventory overview">
-        <article className="stat-card">
+      <section className="stats-grid grid" aria-label="Inventory overview">
+        <article className="stat-card rounded-[8px] bg-white">
           <span>Total Models</span>
           <strong>{guitars.length}</strong>
         </article>
-        <article className="stat-card">
+        <article className="stat-card rounded-[8px] bg-white">
           <span>Total Stock</span>
           <strong>{totalStock}</strong>
         </article>
-        <article className="stat-card">
+        <article className="stat-card rounded-[8px] bg-white">
           <span>Body Types</span>
           <strong>{bodyTypeCount}</strong>
         </article>
       </section>
 
-      <section className="section-block" aria-labelledby="inventory-title">
+      <section className="section-block mt-[30px]" aria-labelledby="inventory-title">
         <div className="section-heading">
           <div>
             <h2 id="inventory-title">Stocks</h2>
@@ -459,8 +475,8 @@ function App() {
           </label>
         </div>
 
-        <div className="registry-layout">
-          <div className="table-card">
+        <div className="registry-layout grid">
+          <div className="table-card rounded-[8px] bg-white">
             <table>
               <thead>
                 {table.getHeaderGroups().map((headerGroup) => (
@@ -535,7 +551,7 @@ function App() {
           </div>
 
           {activeItem && (
-            <article className="active-card">
+            <article className="active-card rounded-[8px] bg-white">
               {activeItem.image ? (
                 <img
                   className="guitar-image"
