@@ -184,12 +184,131 @@ h1 {
   margin-top: 30px;
 }
 
+.form-section {
+  margin-top: 24px;
+  padding: 20px;
+  background: #ffffff;
+  border: 1px solid #e5dfcf;
+  border-radius: 8px;
+  box-shadow: 0 10px 28px rgba(40, 54, 24, 0.08);
+}
+
 .section-heading {
   display: flex;
   justify-content: space-between;
   gap: 16px;
   align-items: end;
   margin-bottom: 16px;
+}
+
+.inventory-form {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  align-items: start;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-field label {
+  color: #283618;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.form-field input,
+.form-field select,
+.filter-control select {
+  min-height: 42px;
+  padding: 0 12px;
+  border: 1px solid #d7cdb9;
+  border-radius: 6px;
+  color: #283618;
+  background: #fffdf8;
+  font: inherit;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.filter-control select:focus {
+  outline: 2px solid #606c38;
+  outline-offset: 2px;
+}
+
+.error-message,
+.success-message {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.error-message {
+  color: #b42318;
+}
+
+.success-message {
+  color: #3f6212;
+}
+
+.form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  justify-content: end;
+  min-height: 72px;
+}
+
+.form-actions button {
+  min-height: 42px;
+  padding: 0 16px;
+  border: 1px solid #283618;
+  border-radius: 6px;
+  color: #ffffff;
+  background: #283618;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+}
+
+.role-radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.role-radio-group legend,
+.filter-control span {
+  width: 100%;
+  margin-bottom: 6px;
+  color: #283618;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.role-radio-group label {
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  min-height: 42px;
+  padding: 0 12px;
+  border: 1px solid #d7cdb9;
+  border-radius: 6px;
+  color: #283618;
+  background: #fffdf8;
+  cursor: pointer;
+}
+
+.filter-control {
+  display: flex;
+  flex-direction: column;
+  min-width: 190px;
 }
 
 h2,
@@ -229,6 +348,121 @@ h2 {
   object-fit: contain;
   background: #ffffff;
   border: 1px solid #eee4cf;
+}
+
+.placeholder-image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b705c;
+  font-weight: 700;
+}
+
+.registry-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(260px, 0.8fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.table-card,
+.active-card {
+  background: #ffffff;
+  border: 1px solid #e5dfcf;
+  border-radius: 8px;
+  box-shadow: 0 10px 28px rgba(40, 54, 24, 0.08);
+}
+
+.table-card {
+  overflow: hidden;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 12px;
+  border-bottom: 1px solid #eee4cf;
+  text-align: left;
+  color: #283618;
+  font-size: 14px;
+}
+
+th {
+  color: #6b705c;
+  background: #fffdf8;
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+tbody tr {
+  cursor: pointer;
+}
+
+tbody tr:hover,
+.selected-row {
+  background: #f7f3e8;
+}
+
+.table-image {
+  display: block;
+  width: 54px;
+  aspect-ratio: 1;
+  border: 1px solid #eee4cf;
+  border-radius: 6px;
+  object-fit: contain;
+  background: #ffffff;
+  font-size: 11px;
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+  padding: 14px;
+}
+
+.pagination-controls button {
+  min-height: 38px;
+  padding: 0 14px;
+  border: 1px solid #283618;
+  border-radius: 6px;
+  color: #ffffff;
+  background: #283618;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 700;
+}
+
+.pagination-controls button:disabled {
+  color: #6b705c;
+  background: #f7f3e8;
+  border-color: #d7cdb9;
+  cursor: not-allowed;
+}
+
+.active-card {
+  padding: 18px;
+}
+
+.active-card .card-top span {
+  color: #ffffff;
+  background: #606c38;
+}
+
+.profile-details {
+  display: grid;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.profile-details span {
+  color: #4f5a3e;
+  font-size: 14px;
 }
 
 .card-top {
@@ -306,6 +540,8 @@ h2 {
 
   .stats-grid,
   .inventory-grid,
+  .registry-layout,
+  .inventory-form,
   .requirements-grid {
     grid-template-columns: 1fr;
   }

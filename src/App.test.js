@@ -3,6 +3,7 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 
 const appSource = readFileSync(new URL('./App.jsx', import.meta.url), 'utf8')
+const packageSource = readFileSync(new URL('../package.json', import.meta.url), 'utf8')
 
 test('shows the guitar inventory manager page content', () => {
   assert.match(appSource, /Guitar Store Inventory Manager/)
@@ -33,5 +34,34 @@ test('uses hooks and conditional role views', () => {
   assert.match(appSource, /Merchant Inventory View/)
   assert.match(appSource, /Browse inventory/)
   assert.match(appSource, /Consumer Shopping View/)
+})
+
+test('includes form validation for adding inventory items', () => {
+  assert.match(appSource, /Add Guitar/)
+  assert.match(appSource, /Guitar Model/)
+  assert.match(appSource, /Body Type/)
+  assert.match(appSource, /Brand Name/)
+  assert.match(appSource, /Stock Quantity/)
   assert.match(appSource, /Manufacturer Name/)
+  assert.match(appSource, /type="radio"/)
+  assert.match(appSource, /Please enter a guitar model/)
+  assert.match(appSource, /Guitar model must be at least 3 characters/)
+  assert.match(appSource, /Please enter a manufacturer name/)
+  assert.match(appSource, /Stock quantity must be between 1 and 100/)
+  assert.match(appSource, /validateField/)
+  assert.match(appSource, /setErrors/)
+})
+
+test('implements registry table pagination and active item selection', () => {
+  assert.match(packageSource, /@tanstack\/react-table/)
+  assert.match(appSource, /@tanstack\/react-table/)
+  assert.match(appSource, /useReactTable/)
+  assert.match(appSource, /getPaginationRowModel/)
+  assert.match(appSource, /Registry Table View/)
+  assert.match(appSource, /Previous/)
+  assert.match(appSource, /Next/)
+  assert.match(appSource, /activeItem/)
+  assert.match(appSource, /selectedItem/)
+  assert.match(appSource, /setSelectedItem/)
+  assert.match(appSource, /Body Type Filter/)
 })
