@@ -3,6 +3,7 @@ import test from 'node:test'
 import assert from 'node:assert/strict'
 
 const appSource = readFileSync(new URL('./App.jsx', import.meta.url), 'utf8')
+const cssSource = readFileSync(new URL('./App.css', import.meta.url), 'utf8')
 const packageSource = readFileSync(new URL('../package.json', import.meta.url), 'utf8')
 
 test('shows the guitar inventory manager page content', () => {
@@ -33,8 +34,8 @@ test('uses hooks and conditional role views', () => {
   assert.match(appSource, /useEffect/)
   assert.match(appSource, /Merchant Inventory View/)
   assert.match(appSource, /Browse inventory/)
-  assert.match(appSource, /Costumer Shopping View/)
-  assert.doesNotMatch(appSource, /Consumer/)
+  assert.match(appSource, /Consumer Shopping View/)
+  assert.doesNotMatch(appSource, /Costumer/)
 })
 
 test('includes form validation for adding inventory items', () => {
@@ -59,11 +60,26 @@ test('implements registry table pagination and active item selection', () => {
   assert.match(appSource, /@tanstack\/react-table/)
   assert.match(appSource, /useReactTable/)
   assert.match(appSource, /getPaginationRowModel/)
-  assert.match(appSource, /Registry Table View/)
+  assert.match(appSource, /Stocks/)
   assert.match(appSource, /Previous/)
   assert.match(appSource, /Next/)
   assert.match(appSource, /activeItem/)
   assert.match(appSource, /selectedItem/)
   assert.match(appSource, /setSelectedItem/)
+  assert.match(appSource, /activeItem\.userRole/)
   assert.match(appSource, /Body Type Filter/)
+})
+
+test('lays out the merchant form as a padded two-column card', () => {
+  assert.match(cssSource, /\.form-section/)
+  assert.match(cssSource, /padding: 28px/)
+  assert.match(cssSource, /grid-template-columns: repeat\(2, 1fr\)/)
+  assert.match(cssSource, /\.full-width-field/)
+  assert.match(cssSource, /grid-column: 1 \/ -1/)
+  assert.doesNotMatch(appSource, /className="form-field full-width-field"/)
+  assert.match(appSource, /className="role-radio-group"/)
+  assert.match(appSource, /className="form-actions full-width-field"/)
+  assert.match(cssSource, /\.role-radio-group/)
+  assert.match(cssSource, /flex-direction: row/)
+  assert.match(cssSource, /justify-content: center/)
 })

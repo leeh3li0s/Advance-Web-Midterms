@@ -186,7 +186,7 @@ h1 {
 
 .form-section {
   margin-top: 24px;
-  padding: 20px;
+  padding: 28px;
   background: #ffffff;
   border: 1px solid #e5dfcf;
   border-radius: 8px;
@@ -203,9 +203,13 @@ h1 {
 
 .inventory-form {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
   align-items: start;
+}
+
+.full-width-field {
+  grid-column: 1 / -1;
 }
 
 .form-field {
@@ -258,13 +262,14 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  justify-content: end;
-  min-height: 72px;
+  align-items: center;
+  justify-content: center;
+  padding-top: 4px;
 }
 
 .form-actions button {
   min-height: 42px;
-  padding: 0 16px;
+  padding: 0 24px;
   border: 1px solid #283618;
   border-radius: 6px;
   color: #ffffff;
@@ -276,16 +281,17 @@ h1 {
 
 .role-radio-group {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   gap: 10px;
+  align-items: center;
   margin: 0;
-  padding: 0;
+  padding-top: 2px;
   border: 0;
 }
 
 .role-radio-group legend,
 .filter-control span {
-  width: 100%;
   margin-bottom: 6px;
   color: #283618;
   font-size: 14px;

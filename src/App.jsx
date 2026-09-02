@@ -8,7 +8,7 @@ import {
 import './App.css'
 
 const bodyTypes = ['Electric', 'Acoustic', 'Bass', 'Classical']
-const userRoles = ['Merchant', 'Costumer']
+const userRoles = ['Merchant', 'Consumer']
 
 const initialGuitars = [
   {
@@ -18,6 +18,7 @@ const initialGuitars = [
     brand: 'Fender',
     stock: 24,
     manufacturer: 'Fender Musical Instruments',
+    userRole: 'Merchant',
     image: '/Fender Stratocaster.jpg',
   },
   {
@@ -27,6 +28,7 @@ const initialGuitars = [
     brand: 'Gibson',
     stock: 18,
     manufacturer: 'Gibson Brands',
+    userRole: 'Merchant',
     image: '/Gibson Les Paul Standard.jpg',
   },
   {
@@ -36,6 +38,7 @@ const initialGuitars = [
     brand: 'Fender',
     stock: 21,
     manufacturer: 'Fender Musical Instruments',
+    userRole: 'Consumer',
     image: '/Fender Telecaster.jpg',
   },
   {
@@ -45,6 +48,7 @@ const initialGuitars = [
     brand: 'Martin',
     stock: 12,
     manufacturer: 'C. F. Martin & Company',
+    userRole: 'Merchant',
     image: '/Martin D-28.jpg',
   },
   {
@@ -54,6 +58,7 @@ const initialGuitars = [
     brand: 'Taylor',
     stock: 15,
     manufacturer: 'Taylor Guitars',
+    userRole: 'Consumer',
     image: '/Taylor 814ce.jpg',
   },
   {
@@ -63,6 +68,7 @@ const initialGuitars = [
     brand: 'Yamaha',
     stock: 30,
     manufacturer: 'Yamaha Corporation',
+    userRole: 'Merchant',
     image: '/Yamaha C40.jpg',
   },
   {
@@ -72,6 +78,7 @@ const initialGuitars = [
     brand: 'Fender',
     stock: 16,
     manufacturer: 'Fender Musical Instruments',
+    userRole: 'Consumer',
     image: '/Fender Precision Bass.jpg',
   },
   {
@@ -81,6 +88,7 @@ const initialGuitars = [
     brand: 'Gibson',
     stock: 14,
     manufacturer: 'Gibson Brands',
+    userRole: 'Merchant',
     image: '/Gibson SG Standard.jpg',
   },
 ]
@@ -275,11 +283,11 @@ function App() {
             Merchant
           </button>
           <button
-            className={userRole === 'Costumer' ? 'active' : ''}
+            className={userRole === 'Consumer' ? 'active' : ''}
             type="button"
-            onClick={() => setUserRole('Costumer')}
+            onClick={() => setUserRole('Consumer')}
           >
-            Costumer
+            Consumer
           </button>
         </div>
       </div>
@@ -299,8 +307,8 @@ function App() {
               <p>Browse inventory and check current stock.</p>
             </section>
           ) : (
-            <section className="role-view" aria-label="Costumer Shopping View">
-              <h2>Costumer Shopping View</h2>
+            <section className="role-view" aria-label="Consumer Shopping View">
+              <h2>Consumer Shopping View</h2>
               <p>
                 Browse available guitars and compare body types before choosing
                 a model to ask about in-store.
@@ -321,7 +329,7 @@ function App() {
 
           <form className="inventory-form" onSubmit={handleSubmit} noValidate>
             <div className="form-field">
-              <label htmlFor="model">Item Name / Guitar Model</label>
+              <label htmlFor="model">Guitar Model</label>
               <input
                 id="model"
                 name="model"
@@ -330,22 +338,6 @@ function App() {
                 onChange={handleInputChange}
               />
               {errors.model && <p className="error-message">{errors.model}</p>}
-            </div>
-
-            <div className="form-field">
-              <label htmlFor="bodyType">Sub-category / Body Type</label>
-              <select
-                id="bodyType"
-                name="bodyType"
-                value={formData.bodyType}
-                onChange={handleInputChange}
-              >
-                {bodyTypes.map((bodyType) => (
-                  <option key={bodyType} value={bodyType}>
-                    {bodyType}
-                  </option>
-                ))}
-              </select>
             </div>
 
             <div className="form-field">
@@ -361,17 +353,19 @@ function App() {
             </div>
 
             <div className="form-field">
-              <label htmlFor="stock">Stock Quantity</label>
-              <input
-                id="stock"
-                name="stock"
-                type="number"
-                min="1"
-                max="100"
-                value={formData.stock}
+              <label htmlFor="bodyType">Type</label>
+              <select
+                id="bodyType"
+                name="bodyType"
+                value={formData.bodyType}
                 onChange={handleInputChange}
-              />
-              {errors.stock && <p className="error-message">{errors.stock}</p>}
+              >
+                {bodyTypes.map((bodyType) => (
+                  <option key={bodyType} value={bodyType}>
+                    {bodyType}
+                  </option>
+                ))}
+              </select>
             </div>
 
             <div className="form-field">
@@ -388,8 +382,37 @@ function App() {
               )}
             </div>
 
+            <div className="form-field">
+              <label htmlFor="stock">Stock Quantity</label>
+              <input
+                id="stock"
+                name="stock"
+                type="number"
+                min="1"
+                max="100"
+                value={formData.stock}
+                onChange={handleInputChange}
+              />
+              {errors.stock && <p className="error-message">{errors.stock}</p>}
+            </div>
 
-            <div className="form-actions">
+            <fieldset className="role-radio-group">
+              <legend>User Role</legend>
+              {userRoles.map((role) => (
+                <label key={role}>
+                  <input
+                    type="radio"
+                    name="userRole"
+                    value={role}
+                    checked={formData.userRole === role}
+                    onChange={handleInputChange}
+                  />
+                  {role}
+                </label>
+              ))}
+            </fieldset>
+
+            <div className="form-actions full-width-field">
               <button type="submit">Add to Inventory</button>
               {successMessage && (
                 <p className="success-message">{successMessage}</p>
@@ -524,6 +547,7 @@ function App() {
               )}
               <div className="card-top">
                 <h3>{activeItem.model}</h3>
+                <span>{activeItem.userRole}</span>
               </div>
               <p>{activeItem.brand}</p>
               <div className="profile-details">
